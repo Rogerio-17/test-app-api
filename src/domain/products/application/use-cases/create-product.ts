@@ -1,8 +1,9 @@
-import { Either, right } from "src/core/either"
+import { Either, left, right } from "src/core/either"
 import { Product } from "../../enterprise/entities/product"
 import { Injectable } from "@nestjs/common"
 import { ProductsRepository } from "../repositories/products-repository"
 import { findFirstMissingAlphabetLetter } from "src/infra/utils/find-first-missing-alphabet-letter"
+import { ProductsAlreadyExistsError } from "./errors/product-already-exists"
 
 interface CreateProductUseCaseRequest {
   sku: string
@@ -12,7 +13,7 @@ interface CreateProductUseCaseRequest {
 }
 
 type CreateProductUseCaseResponse = Either<
-  null,
+  ProductsAlreadyExistsError,
   {
     product: Product
   }
@@ -28,6 +29,12 @@ export class CreateProductUseCase {
     sku,
     description
   }: CreateProductUseCaseRequest): Promise<CreateProductUseCaseResponse> {
+    const existingProduct = await this.productsRepository.findBySku(sku)
+
+    if (existingProduct) {
+      return left(new ProductsAlreadyExistsError())
+    }
+
     const firstMissingLetter = findFirstMissingAlphabetLetter([name])
 
     const product = Product.create({

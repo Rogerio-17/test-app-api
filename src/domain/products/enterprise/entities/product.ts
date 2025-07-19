@@ -12,6 +12,7 @@ export interface ProductProps {
   updatedAt?: Date | null
 }
 
+
 export class Product extends Entity<ProductProps> {
   get sku() {
     return this.props.sku

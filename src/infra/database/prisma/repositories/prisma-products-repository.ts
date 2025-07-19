@@ -30,6 +30,18 @@ export class PrismaProductsRepository implements ProductsRepository {
     return products.map(PrismaProductMapper.toDomain)
   }
 
+  async findBySku(sku: string): Promise<Product | null> {
+    const product = await this.prisma.product.findUnique({
+      where: { sku },
+    })
+
+    if (!product) {
+      return null
+    }
+
+    return PrismaProductMapper.toDomain(product)
+  }
+
   async create(product: Product): Promise<void> {
     const data = PrismaProductMapper.toPrisma(product)
 
