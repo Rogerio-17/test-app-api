@@ -6,6 +6,7 @@ export interface ProductProps {
   sku: string
   name: string
   price: number
+  firstMissingLetter: string
   description?: string | null
   createdAt: Date
   updatedAt?: Date | null
@@ -22,6 +23,10 @@ export class Product extends Entity<ProductProps> {
 
   get price() {
     return this.props.price
+  }
+
+  get firstMissingLetter() {
+    return this.props.firstMissingLetter
   }
 
   get description() {
@@ -44,6 +49,7 @@ export class Product extends Entity<ProductProps> {
   ) {
     this.props.sku = props.sku
     this.props.name = props.name
+    this.props.firstMissingLetter = props.firstMissingLetter
     this.props.price = props.price
     this.props.description = props.description
 

@@ -5,7 +5,7 @@ POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-  "name": "Product Name",
+  "name": "Blusa",
   "description": "Product Description",
   "price": 100.00,
   "sku": "SKU12345"

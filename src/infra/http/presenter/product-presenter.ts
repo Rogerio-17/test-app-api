@@ -7,6 +7,7 @@ export class ProductPresenter {
         price: product.price,
         sku: product.sku,
         description: product.description,
+        firstMissingLetter: product.firstMissingLetter,
         createdAt: product.createdAt.toISOString(),
         updatedAt: product.updatedAt ? product.updatedAt.toISOString() : null,
     };

@@ -3,6 +3,7 @@ import { Product } from "../../enterprise/entities/product"
 import { Injectable } from "@nestjs/common"
 import { ProductsRepository } from "../repositories/products-repository"
 import { ResourceNotFoundError } from "src/core/errors/errors/resource-not-found-error"
+import { findFirstMissingAlphabetLetter } from "src/infra/utils/find-first-missing-alphabet-letter"
 
 interface UpdateProductByIdUseCaseRequest {
   productId: string
@@ -36,9 +37,12 @@ export class UpdateProductByIdUseCase {
       return left(new ResourceNotFoundError())
     }
 
+    const firstMissingLetter = findFirstMissingAlphabetLetter([name])
+
     product.update({
       sku,
       name,
+      firstMissingLetter,
       price,
       description
     })
