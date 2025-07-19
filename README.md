@@ -67,10 +67,6 @@ pnpm prisma generate
 # Executar migrações
 pnpm prisma migrate dev
 
-# Ou fazer push do schema (para desenvolvimento rápido)
-pnpm prisma db push
-```
-
 ### 6. Execute a aplicação
 
 #### Desenvolvimento (com hot reload)
