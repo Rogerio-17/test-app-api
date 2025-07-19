@@ -1,0 +1,40 @@
+@baseUrl = http://localhost:3333
+
+# @name create_product
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "Product Name",
+  "description": "Product Description",
+  "price": 100.00,
+  "sku": "SKU12345"
+}
+
+###
+
+# @name list_products
+GET {{baseUrl}}/products
+
+###
+
+# @name list_product_by_id
+GET {{baseUrl}}/products/:id
+
+###
+
+# @name update_product_by_id
+PUT {{baseUrl}}/products/:id
+Content-Type: application/json
+
+{
+  "name": "Updated Product Name",
+  "description": "Updated Product Description",
+  "price": 150.00,
+  "sku": "SKU54321"
+}
+
+###
+
+# @name delete_product_by_id
+DELETE {{baseUrl}}/products/:id
