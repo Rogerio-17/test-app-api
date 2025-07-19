@@ -66,6 +66,7 @@ pnpm prisma generate
 
 # Executar migrações
 pnpm prisma migrate dev
+```
 
 ### 6. Execute a aplicação
 
