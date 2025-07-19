@@ -1,5 +1,6 @@
 import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
 import { CreateProductUseCase } from "src/domain/products/application/use-cases/create-product";
+import { ProductsAlreadyExistsError } from "src/domain/products/application/use-cases/errors/product-already-exists";
 import { ZodValidationPipe } from "src/infra/pipes/zod-validation-pipe";
 import z from "zod";
 
@@ -30,6 +31,12 @@ export class CreateProductController {
     });
 
     if (result.isLeft()) {
+      const error = result.value;
+
+      if (error instanceof ProductsAlreadyExistsError) {
+        throw new BadRequestException(error.message);
+      }
+      
       throw new BadRequestException()
     }
   }
