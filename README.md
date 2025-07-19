@@ -331,39 +331,6 @@ Content-Type: application/json
 DELETE {{baseUrl}}/products/550e8400-e29b-41d4-a716-446655440000
 ```
 
-### Usando cURL
-
-```bash
-# Criar produto
-curl -X POST http://localhost:3333/products \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Produto Teste",
-    "price": 99.99,
-    "sku": "TESTE-001",
-    "description": "Produto para teste da API"
-  }'
-
-# Listar produtos
-curl http://localhost:3333/products
-
-# Buscar por ID (substitua pelo ID real)
-curl http://localhost:3333/products/550e8400-e29b-41d4-a716-446655440000
-
-# Atualizar produto
-curl -X PUT http://localhost:3333/products/550e8400-e29b-41d4-a716-446655440000 \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Produto Atualizado",
-    "price": 149.99,
-    "sku": "TESTE-001-UPD",
-    "description": "Produto atualizado via cURL"
-  }'
-
-# Deletar produto
-curl -X DELETE http://localhost:3333/products/550e8400-e29b-41d4-a716-446655440000
-```
-
 ### Usando Postman ou Insomnia
 
 1. Importe a collection do arquivo `requests/products.http`
@@ -405,57 +372,6 @@ src/
 - **Presenter Pattern**: Formatação de dados para resposta
 - **Dependency Injection**: Inversão de dependências via NestJS
 
-## 🛠️ Comandos Úteis
-
-### Desenvolvimento
-```bash
-# Iniciar em modo desenvolvimento
-pnpm start:dev
-
-# Visualizar banco de dados
-pnpm prisma studio
-
-# Resetar banco de dados
-pnpm prisma migrate reset
-
-# Gerar nova migração
-pnpm prisma migrate dev --name nome-da-migracao
-```
-
-### Produção
-```bash
-# Build da aplicação
-pnpm build
-
-# Executar em produção
-pnpm start:prod
-```
-
-### Docker
-```bash
-# Iniciar serviços (PostgreSQL)
-docker-compose up -d
-
-# Parar serviços
-docker-compose down
-
-# Ver logs do banco
-docker-compose logs postgres
-```
-
-## 🚀 Próximos Passos
-
-- [ ] **Paginação**: Implementar paginação na listagem de produtos
-- [ ] **Filtros**: Adicionar filtros por nome, preço, SKU
-- [ ] **Busca**: Sistema de busca textual
-- [ ] **Autenticação**: JWT para proteção de rotas
-- [ ] **Rate Limiting**: Proteção contra spam
-- [ ] **Swagger**: Documentação automática da API
-- [ ] **Testes**: Testes unitários e de integração
-- [ ] **Logs**: Sistema de logs estruturado
-- [ ] **Cache**: Cache Redis para performance
-- [ ] **Seed**: Dados iniciais para desenvolvimento
-
 ## 🐛 Troubleshooting
 
 ### Problemas Comuns
@@ -480,11 +396,3 @@ pnpm prisma generate
 # Mude a porta no .env
 PORT=3334
 ```
-
-## 📄 Licença
-
-Este projeto está sob a licença **UNLICENSED**.
-
----
-
-**Desenvolvido com ❤️ usando NestJS, Prisma e Clean Architecture**
